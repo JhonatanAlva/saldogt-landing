@@ -21,8 +21,7 @@ export default function Features() {
     {
       icon: "🎯",
       title: "Metas de Ahorro",
-      description:
-        "Define objetivos y monitorea tu progreso hacia tus metas.",
+      description: "Define objetivos y monitorea tu progreso hacia tus metas.",
     },
     {
       icon: "🤖",
@@ -39,10 +38,8 @@ export default function Features() {
   ];
 
   return (
-    <section className="mx-auto max-w-7xl px-6 mt-12">
-
+    <section id="caracteristicas" className="mx-auto max-w-7xl px-6 mt-12">
       <div className="text-center">
-
         <h2 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
           Todo lo que necesitas para controlar tus finanzas
         </h2>
@@ -51,30 +48,23 @@ export default function Features() {
           SaldoGT reúne las herramientas necesarias para ayudarte a tomar
           mejores decisiones financieras todos los días.
         </p>
-
       </div>
 
       <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-
         {features.map((feature) => (
           <div
             key={feature.title}
             className="rounded-2xl border border-white/10 bg-slate-900 p-6 transition hover:border-emerald-400/40 hover:shadow-lg"
           >
-            <div className="mb-4 text-4xl">
-              {feature.icon}
-            </div>
+            <div className="mb-4 text-4xl">{feature.icon}</div>
 
             <h3 className="text-xl font-semibold text-white">
               {feature.title}
             </h3>
 
-            <p className="mt-3 text-slate-400">
-              {feature.description}
-            </p>
+            <p className="mt-3 text-slate-400">{feature.description}</p>
           </div>
         ))}
-
       </div>
     </section>
   );

@@ -1,8 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="mx-auto flex min-h-[90vh] w-full max-w-7xl items-center px-6">
+    <section
+      id="inicio"
+      className="mx-auto flex min-h-[90vh] w-full max-w-7xl items-center px-6"
+    >
       <div className="flex w-full flex-col items-center">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-white md:text-7xl">
@@ -17,13 +21,14 @@ export default function Hero() {
           </p>
 
           <div className="mt-10 flex justify-center gap-4">
-            <button className="rounded-xl bg-emerald-400 px-6 py-3 font-semibold text-slate-900 transition hover:bg-emerald-300">
+            <a
+              href="https://www.misaldo.lat/registro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl bg-emerald-400 px-6 py-3 font-semibold text-slate-900 transition hover:bg-emerald-300"
+            >
               Comenzar gratis
-            </button>
-
-            <button className="rounded-xl border border-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/5">
-              Ver demostración
-            </button>
+            </a>
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-slate-400">

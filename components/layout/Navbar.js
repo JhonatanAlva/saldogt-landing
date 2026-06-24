@@ -27,13 +27,23 @@ export default function Navbar() {
 
         {/* Botones */}
         <div className="flex items-center gap-4">
-          <button className="cursor-pointer text-sm font-medium text-gray-300 transition hover:text-white">
+          <a
+            href="https://www.misaldo.lat/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer text-sm font-medium text-gray-300 transition hover:text-white"
+          >
             Iniciar sesión
-          </button>
+          </a>
 
-          <button className="cursor-pointer rounded-xl bg-emerald-400 px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-emerald-300">
+          <a
+            href="https://www.misaldo.lat/registro"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer rounded-xl bg-emerald-400 px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-emerald-300"
+          >
             Comenzar gratis
-          </button>
+          </a>
         </div>
       </div>
     </nav>

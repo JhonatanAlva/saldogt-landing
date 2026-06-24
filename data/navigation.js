@@ -1,18 +1,14 @@
 export const navigation = [
   {
     title: "Inicio",
-    href: "/",
+    href: "#inicio",
   },
   {
     title: "Características",
-    href: "/caracteristicas",
-  },
-  {
-    title: "Blog",
-    href: "/blog",
+    href: "#caracteristicas",
   },
   {
     title: "FAQ",
-    href: "/faq",
+    href: "#faq",
   },
 ];

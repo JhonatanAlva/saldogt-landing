@@ -5,6 +5,8 @@ import ShowcaseTransactions from "@/components/home/ShowcaseTransactions";
 import ShowcaseSavings from "@/components/home/ShowcaseSavings";
 import ShowcaseAI from "@/components/home/ShowcaseAI";
 import FAQ from "@/components/home/FAQ";
+import CTA from "@/components/home/CTA";
+import Footer from "@/components/home/Footer";
 
 export default function Home() {
   return (
@@ -16,8 +18,8 @@ export default function Home() {
       <ShowcaseSavings />
       <ShowcaseAI />
       <FAQ />
-
-      <h1>SaldoGT</h1>
+      <CTA />
+      <Footer />
     </main>
   );
 }

@@ -33,7 +33,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="mx-auto max-w-5xl px-6 py-12">
+    <section id="faq" className="mx-auto max-w-5xl px-6 py-12">
       <div className="text-center">
         <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-400">
           FAQ
