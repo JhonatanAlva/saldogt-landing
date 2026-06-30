@@ -1,3 +1,5 @@
+import { MotionSection, MotionDiv, MotionStagger } from "@/components/shared/ui/MotionSection";
+
 export default function FAQ() {
   const faqs = [
     {
@@ -33,8 +35,8 @@ export default function FAQ() {
   ];
 
   return (
-    <section id="faq" className="mx-auto max-w-5xl px-6 py-12">
-      <div className="text-center">
+    <MotionSection id="faq" className="mx-auto max-w-5xl px-6 py-12">
+      <MotionDiv className="text-center" delay={0.1}>
         <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-400">
           FAQ
         </span>
@@ -46,24 +48,27 @@ export default function FAQ() {
         <p className="mt-6 text-xl text-slate-400">
           Todo lo que necesitas saber sobre SaldoGT.
         </p>
-      </div>
+      </MotionDiv>
 
-      <div className="mt-16 space-y-6">
+      <MotionStagger className="mt-16 space-y-6">
         {faqs.map((faq, index) => (
-          <div
+          <MotionDiv
             key={index}
-            className="rounded-2xl border border-white/10 bg-slate-900/50 p-6"
+            className="group rounded-2xl border border-white/10 bg-slate-900/50 p-6"
+            delay={0.15 + index * 0.05}
           >
-            <h3 className="text-xl font-semibold text-white">
-              {faq.question}
-            </h3>
+            <details>
+              <summary className="cursor-pointer text-xl font-semibold text-white [&::-webkit-details-marker]:hidden">
+                {faq.question}
+              </summary>
 
-            <p className="mt-3 text-slate-400">
-              {faq.answer}
-            </p>
-          </div>
+              <p className="mt-3 text-slate-400">
+                {faq.answer}
+              </p>
+            </details>
+          </MotionDiv>
         ))}
-      </div>
-    </section>
+      </MotionStagger>
+    </MotionSection>
   );
 }

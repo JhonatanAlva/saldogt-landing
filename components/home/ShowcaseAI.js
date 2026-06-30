@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { MotionSection, MotionDiv } from "@/components/shared/ui/MotionSection";
 
 export default function ShowcaseAI() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-16">
+    <MotionSection className="mx-auto max-w-7xl px-6 py-16">
       <div className="grid md:grid-cols-[1fr_1.3fr] items-center gap-12">
-        <div>
+        <MotionDiv delay={0.1}>
           <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-400">
             Asistente IA
           </span>
@@ -25,16 +26,19 @@ export default function ShowcaseAI() {
             <div>✓ Alertas financieras</div>
             <div>✓ Consejos personalizados</div>
           </div>
-        </div>
+        </MotionDiv>
 
-        <Image
-          src="/images/screenshots/asistente-ia.png"
-          alt="Asistente IA SaldoGT"
-          width={1600}
-          height={1000}
-          className="w-full rounded-2xl"
-        />
+        <MotionDiv delay={0.15} whileHover={{ y: -6 }}>
+          <Image
+            src="/images/screenshots/asistente-ia.png"
+            alt="Asistente IA SaldoGT"
+            width={1600}
+            height={1000}
+            sizes="(max-width: 768px) 100vw, 650px"
+            className="w-full rounded-2xl"
+          />
+        </MotionDiv>
       </div>
-    </section>
+    </MotionSection>
   );
 }

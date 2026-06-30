@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { MotionSection, MotionDiv } from "@/components/shared/ui/MotionSection";
 
 export default function ShowcaseTransactions() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-12">
+    <MotionSection className="mx-auto max-w-7xl px-6 py-12">
       <div className="grid md:grid-cols-[0.9fr_1.4fr] items-center gap-12">
-        <div>
+        <MotionDiv delay={0.1}>
           <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-400">
             Transacciones
           </span>
@@ -21,25 +22,25 @@ export default function ShowcaseTransactions() {
 
           <div className="mt-8 space-y-4 text-slate-300">
             <div>✓ Registro rápido de movimientos</div>
-
             <div>✓ Control de ingresos y gastos</div>
-
             <div>✓ Historial financiero completo</div>
-
             <div>✓ Organización por categorías</div>
           </div>
-        </div>
+        </MotionDiv>
 
-        <div className="overflow-hidden rounded-3xl border border-white/10 bg-slate-900 p-2 shadow-2xl">
-          <Image
-            src="/images/screenshots/transacciones.png"
-            alt="Transacciones SaldoGT"
-            width={1600}
-            height={1000}
-            className="w-full rounded-2xl"
-          />
-        </div>
+        <MotionDiv delay={0.15} whileHover={{ y: -6 }}>
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-slate-900 p-2 shadow-2xl">
+            <Image
+              src="/images/screenshots/transacciones.png"
+              alt="Transacciones SaldoGT"
+              width={1600}
+              height={1000}
+              sizes="(max-width: 768px) 100vw, 650px"
+              className="w-full rounded-2xl"
+            />
+          </div>
+        </MotionDiv>
       </div>
-    </section>
+    </MotionSection>
   );
 }

@@ -1,3 +1,5 @@
+import { MotionSection, MotionStagger, MotionDiv } from "@/components/shared/ui/MotionSection";
+
 export default function Features() {
   const features = [
     {
@@ -38,8 +40,8 @@ export default function Features() {
   ];
 
   return (
-    <section id="caracteristicas" className="mx-auto max-w-7xl px-6 mt-12">
-      <div className="text-center">
+    <MotionSection id="caracteristicas" className="mx-auto max-w-7xl px-6 mt-12">
+      <MotionDiv className="text-center" delay={0.1}>
         <h2 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
           Todo lo que necesitas para controlar tus finanzas
         </h2>
@@ -48,13 +50,14 @@ export default function Features() {
           SaldoGT reúne las herramientas necesarias para ayudarte a tomar
           mejores decisiones financieras todos los días.
         </p>
-      </div>
+      </MotionDiv>
 
-      <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <MotionStagger className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {features.map((feature) => (
-          <div
+          <MotionDiv
             key={feature.title}
             className="rounded-2xl border border-white/10 bg-slate-900 p-6 transition hover:border-emerald-400/40 hover:shadow-lg"
+            whileHover={{ y: -6, scale: 1.01 }}
           >
             <div className="mb-4 text-4xl">{feature.icon}</div>
 
@@ -63,9 +66,9 @@ export default function Features() {
             </h3>
 
             <p className="mt-3 text-slate-400">{feature.description}</p>
-          </div>
+          </MotionDiv>
         ))}
-      </div>
-    </section>
+      </MotionStagger>
+    </MotionSection>
   );
 }

@@ -15,6 +15,22 @@ export const metadata = {
   title: "SaldoGT | Controla tus finanzas personales",
   description:
     "SaldoGT es una plataforma para administrar ingresos, gastos, presupuestos y reportes financieros de forma fácil y segura.",
+  metadataBase: new URL("http://localhost:3000"),
+  openGraph: {
+    title: "SaldoGT | Controla tus finanzas personales",
+    description:
+      "SaldoGT es una plataforma para administrar ingresos, gastos, presupuestos y reportes financieros de forma fácil y segura.",
+    type: "website",
+    images: ["/images/screenshots/dashboard.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+    shortcut: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -23,7 +39,12 @@ export default function RootLayout({ children }) {
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <a href="#main-content" className="skip-link">
+          Saltar al contenido
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

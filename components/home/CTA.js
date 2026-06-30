@@ -1,7 +1,9 @@
+import { MotionSection, MotionDiv } from "@/components/shared/ui/MotionSection";
+
 export default function CTA() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24">
-      <div className="rounded-3xl border border-white/10 bg-slate-900 p-12 text-center">
+    <MotionSection className="mx-auto max-w-7xl px-6 py-24">
+      <MotionDiv className="rounded-3xl border border-white/10 bg-slate-900 p-12 text-center" delay={0.1}>
         <h2 className="text-5xl font-extrabold text-white">
           ¿Listo para tomar el control de tus finanzas?
         </h2>
@@ -21,7 +23,7 @@ export default function CTA() {
             Comenzar gratis
           </a>
         </div>
-      </div>
-    </section>
+      </MotionDiv>
+    </MotionSection>
   );
 }
