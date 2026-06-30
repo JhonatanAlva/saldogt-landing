@@ -15,7 +15,7 @@ export default function CTA() {
 
         <div className="mt-10">
           <a
-            href="https://www.misaldo.lat/registro"
+            href="https://app.misaldo.lat/registro"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block rounded-xl bg-emerald-400 px-8 py-4 text-lg font-semibold text-slate-950 transition hover:scale-105"

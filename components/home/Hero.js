@@ -23,7 +23,7 @@ export default function Hero() {
           <div className="mt-10 flex justify-center gap-4">
             <MotionDiv whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
               <a
-                href="https://www.misaldo.lat/registro"
+                href="https://app.misaldo.lat/registro"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-xl bg-emerald-400 px-6 py-3 font-semibold text-slate-900 transition hover:bg-emerald-300"

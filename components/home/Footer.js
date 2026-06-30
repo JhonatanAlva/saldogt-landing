@@ -50,7 +50,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://www.misaldo.lat/"
+                href="https://app.misaldo.lat/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-emerald-400 transition"

@@ -43,7 +43,7 @@ export default function Navbar() {
           </ul>
 
           <a
-            href="https://www.misaldo.lat/"
+            href="https://app.misaldo.lat/"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-xl px-4 py-2 text-sm font-medium text-gray-300 transition hover:text-white"
@@ -52,7 +52,7 @@ export default function Navbar() {
           </a>
 
           <a
-            href="https://www.misaldo.lat/registro"
+            href="https://app.misaldo.lat/registro"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-xl bg-emerald-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-emerald-300"
@@ -97,7 +97,7 @@ export default function Navbar() {
 
             <div className="mt-4 flex flex-col gap-3">
               <a
-                href="https://www.misaldo.lat/"
+                href="https://app.misaldo.lat/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-2xl border border-white/10 px-4 py-3 text-center text-sm font-medium text-gray-300 transition hover:bg-slate-900 hover:text-white"
@@ -107,7 +107,7 @@ export default function Navbar() {
               </a>
 
               <a
-                href="https://www.misaldo.lat/registro"
+                href="https://app.misaldo.lat/registro"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-2xl bg-emerald-400 px-4 py-3 text-center text-sm font-semibold text-slate-900 transition hover:bg-emerald-300"

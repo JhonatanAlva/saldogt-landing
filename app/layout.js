@@ -15,7 +15,7 @@ export const metadata = {
   title: "SaldoGT | Controla tus finanzas personales",
   description:
     "SaldoGT es una plataforma para administrar ingresos, gastos, presupuestos y reportes financieros de forma fácil y segura.",
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL("https://www.misaldo.lat"),
   openGraph: {
     title: "SaldoGT | Controla tus finanzas personales",
     description:
