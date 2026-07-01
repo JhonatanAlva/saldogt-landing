@@ -99,8 +99,6 @@ export default function Footer() {
                 <h3 className="text-xl font-semibold text-white">2. Privacidad y datos</h3>
                 <p className="mt-2">
                   La plataforma puede recopilar datos para mejorar la experiencia y ofrecer funciones.
-                  Recomendamos crear una política de privacidad separada que describa cómo se gestionan
-                  esos datos.
                 </p>
               </div>
 
