@@ -90,36 +90,33 @@ export default function Hero() {
       </div>
 
       <div className="relative mx-auto mt-16 h-[30rem] max-w-5xl sm:h-[36rem] md:mt-20 lg:h-[40rem]">
-        <div
-          data-hero="phone-side"
-          className="absolute left-1/2 top-16 w-52 -translate-x-[125%] sm:w-60 lg:w-64"
-        >
-          <PhoneFrame
-            src="/images/app/metas.webp"
-            alt="Pantalla de metas de ahorro de SaldoGT con un fondo de emergencia al 48%"
-            sizes="256px"
-          />
+        <div className="absolute left-1/2 top-16 w-52 -translate-x-[125%] sm:w-60 lg:w-64">
+          <div data-hero="phone-side">
+            <PhoneFrame
+              src="/images/app/metas.webp"
+              alt="Pantalla de metas de ahorro de SaldoGT con un fondo de emergencia al 48%"
+              sizes="256px"
+            />
+          </div>
         </div>
-        <div
-          data-hero="phone-side"
-          className="absolute left-1/2 top-16 w-52 translate-x-[25%] sm:w-60 lg:w-64"
-        >
-          <PhoneFrame
-            src="/images/app/transacciones.webp"
-            alt="Pantalla de transacciones de SaldoGT con la lista de ingresos y gastos"
-            sizes="256px"
-          />
+        <div className="absolute left-1/2 top-16 w-52 translate-x-[25%] sm:w-60 lg:w-64">
+          <div data-hero="phone-side">
+            <PhoneFrame
+              src="/images/app/transacciones.webp"
+              alt="Pantalla de transacciones de SaldoGT con la lista de ingresos y gastos"
+              sizes="256px"
+            />
+          </div>
         </div>
-        <div
-          data-hero="phone-center"
-          className="absolute left-1/2 top-0 z-10 w-60 -translate-x-1/2 sm:w-68 lg:w-76"
-        >
-          <PhoneFrame
-            src="/images/app/resumen.webp"
-            alt="Pantalla de resumen de SaldoGT con el saldo disponible y la gráfica de balance financiero"
-            priority
-            sizes="304px"
-          />
+        <div className="absolute left-1/2 top-0 z-10 w-60 -translate-x-1/2 sm:w-68 lg:w-76">
+          <div data-hero="phone-center">
+            <PhoneFrame
+              src="/images/app/resumen.webp"
+              alt="Pantalla de resumen de SaldoGT con el saldo disponible y la gráfica de balance financiero"
+              priority
+              sizes="304px"
+            />
+          </div>
         </div>
       </div>
     </section>
