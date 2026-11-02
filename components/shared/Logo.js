@@ -48,17 +48,12 @@ export function LogoMark({ className = "h-10 w-10" }) {
   );
 }
 
-export default function Logo({ tone = "dark", className = "" }) {
-  const wordColor = tone === "dark" ? "text-white" : "text-text";
-  const accentColor = tone === "dark" ? "text-mint-400" : "text-brand-600";
-
+export default function Logo({ className = "", markClassName = "h-8 w-8" }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <LogoMark className="h-9 w-9 shrink-0" />
-      <span
-        className={`font-display text-[1.45rem] font-bold leading-none tracking-tight ${wordColor}`}
-      >
-        Saldo<span className={accentColor}>GT</span>
+    <span className={`inline-flex items-center gap-2 ${className}`}>
+      <LogoMark className={`shrink-0 ${markClassName}`} />
+      <span className="text-[1.3rem] font-semibold leading-none tracking-[-0.03em] text-ink">
+        Saldo<span className="text-brand-600">GT</span>
       </span>
     </span>
   );

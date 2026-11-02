@@ -1,85 +1,75 @@
 @import "tailwindcss";
 
 /*
-  Paleta SaldoGT (derivada del logo: turquesa + menta)
-  - ink: secciones oscuras
-  - paper/surface: secciones claras
-  - brand: acciones sobre fondo claro (contraste AA con texto blanco)
-  - mint: acentos y acciones sobre fondo oscuro
+  Sistema visual SaldoGT: galería clara, producto como protagonista.
+  - canvas/mist: superficies (blanco y banda gris clara), sin sombras ni gradientes
+  - ink/slate: texto principal y secundario
+  - brand: único acento (turquesa del logo), solo en enlaces y botones compactos
 */
 :root {
-  --ink-950: #061413;
-  --ink-900: #0a1f1d;
-  --ink-800: #11302d;
-  --ink-700: #1b4440;
+  --canvas: #ffffff;
+  --mist: #f5f5f7;
+  --frost: #fafafc;
+  --hairline: #d6d6d6;
+  --control: #e6e6e8;
 
-  --paper: #f5f8f7;
-  --surface: #ffffff;
-  --line: #dce7e4;
-
-  --text: #0a1f1d;
-  --text-muted: #4a5f5c;
+  --ink: #1d1d1f;
+  --slate: #707070;
+  --steel: #86868b;
 
   --brand-50: #e9f7f5;
-  --brand-100: #c9ece7;
   --brand-500: #2fa39b;
   --brand-600: #13877f;
   --brand-700: #0e6b65;
-
-  --mint-300: #8af0d8;
-  --mint-400: #5ee6c8;
-
-  --coral-400: #fb8a6b;
-  --coral-500: #f06a47;
+  --brand-800: #0b5752;
 }
 
 @theme inline {
-  --color-ink-950: var(--ink-950);
-  --color-ink-900: var(--ink-900);
-  --color-ink-800: var(--ink-800);
-  --color-ink-700: var(--ink-700);
-  --color-paper: var(--paper);
-  --color-surface: var(--surface);
-  --color-line: var(--line);
-  --color-text: var(--text);
-  --color-text-muted: var(--text-muted);
+  --color-canvas: var(--canvas);
+  --color-mist: var(--mist);
+  --color-frost: var(--frost);
+  --color-hairline: var(--hairline);
+  --color-control: var(--control);
+  --color-ink: var(--ink);
+  --color-slate: var(--slate);
+  --color-steel: var(--steel);
   --color-brand-50: var(--brand-50);
-  --color-brand-100: var(--brand-100);
   --color-brand-500: var(--brand-500);
   --color-brand-600: var(--brand-600);
   --color-brand-700: var(--brand-700);
-  --color-mint-300: var(--mint-300);
-  --color-mint-400: var(--mint-400);
-  --color-coral-400: var(--coral-400);
-  --color-coral-500: var(--coral-500);
+  --color-brand-800: var(--brand-800);
 
-  --font-sans: var(--font-jakarta);
-  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-inter);
+
+  --radius-card: 28px;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-  background: var(--ink-950);
+  scroll-padding-top: 4rem;
+  background: var(--canvas);
 }
 
 body {
   min-height: 100%;
   font-family: var(--font-sans);
-  background: var(--paper);
-  color: var(--text);
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.022em;
+  background: var(--canvas);
+  color: var(--ink);
   overflow-x: clip;
 }
 
 h1,
 h2,
 h3 {
-  font-family: var(--font-display);
+  font-weight: 600;
   text-wrap: balance;
 }
 
 :focus-visible {
-  outline: 2px solid var(--mint-400);
+  outline: 2px solid var(--brand-600);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -100,11 +90,19 @@ h3 {
   width: auto;
   height: auto;
   padding: 0.75rem 1rem;
-  background: var(--ink-900);
+  background: var(--ink);
   color: #fff;
   border-radius: 9999px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
   z-index: 100;
+}
+
+/* Carrusel horizontal sin barra visible */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /*

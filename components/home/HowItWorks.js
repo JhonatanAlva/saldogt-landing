@@ -19,34 +19,26 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="como-funciona" className="bg-paper py-24 md:py-32">
-      <Reveal className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="max-w-2xl">
-          <p data-reveal className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-700">
-            Cómo funciona
-          </p>
-          <h2
-            data-reveal
-            className="mt-4 text-4xl font-bold tracking-tight text-text md:text-5xl"
-          >
-            Ordenar tus finanzas toma tres pasos.
-          </h2>
-        </div>
+    <section id="como-funciona" className="bg-canvas py-24 md:py-32">
+      <Reveal className="mx-auto max-w-6xl px-5 md:px-8">
+        <p data-reveal className="text-[21px] font-semibold text-ink">
+          Cómo funciona
+        </p>
+        <h2
+          data-reveal
+          className="mt-2 max-w-3xl text-[2.5rem] leading-[1.08] tracking-[-0.01em] text-ink md:text-5xl"
+        >
+          Ordenar tus finanzas toma tres pasos.
+        </h2>
 
-        <ol className="mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
+        <ol className="mt-16 grid gap-12 border-t border-hairline pt-12 md:grid-cols-3 md:gap-10">
           {steps.map((step, index) => (
-            <li key={step.title} data-reveal className="relative">
-              <div className="flex items-center gap-4">
-                <span className="font-display text-6xl font-bold leading-none tracking-tight text-brand-600 tabular-nums">
-                  {index + 1}
-                </span>
-                <span
-                  className={`h-px flex-1 ${index === steps.length - 1 ? "bg-transparent" : "bg-line"}`}
-                  aria-hidden="true"
-                />
-              </div>
-              <h3 className="mt-6 text-xl font-semibold text-text">{step.title}</h3>
-              <p className="mt-2 max-w-xs leading-7 text-text-muted">{step.description}</p>
+            <li key={step.title} data-reveal>
+              <span className="text-5xl font-semibold leading-none tracking-[-0.02em] text-brand-700 tabular-nums">
+                {index + 1}
+              </span>
+              <h3 className="mt-6 text-2xl tracking-[-0.01em] text-ink">{step.title}</h3>
+              <p className="mt-2 max-w-xs text-slate">{step.description}</p>
             </li>
           ))}
         </ol>

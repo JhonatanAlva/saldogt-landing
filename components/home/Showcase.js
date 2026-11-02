@@ -1,188 +1,162 @@
 "use client";
 
-import { useRef, useState } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import PhoneFrame from "@/components/shared/PhoneFrame";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Reveal from "@/components/shared/Reveal";
-
-gsap.registerPlugin(useGSAP);
+import { appLinks } from "@/data/navigation";
 
 const features = [
   {
-    id: "transacciones",
     title: "Transacciones",
-    description:
-      "Registra ingresos y gastos en segundos. Busca por descripción o categoría y filtra por fechas para encontrar cualquier movimiento.",
+    statement: "Cada movimiento, en un solo historial.",
+    description: "Busca por descripción o categoría y filtra por fechas.",
     image: "/images/app/transacciones.webp",
     alt: "Pantalla de transacciones de SaldoGT con buscador, filtros por fecha y lista de movimientos",
   },
   {
-    id: "fijos",
     title: "Gastos e ingresos fijos",
-    description:
-      "Configura tu sueldo, suscripciones y pagos que se repiten. El calendario financiero te muestra cuándo cobras y cuándo pagas.",
+    statement: "Sabe cuándo cobras y cuándo pagas.",
+    description: "Tu sueldo y tus suscripciones, organizados en un calendario financiero.",
     image: "/images/app/calendario.webp",
     alt: "Calendario financiero de SaldoGT con un ingreso fijo y un gasto fijo programados",
   },
   {
-    id: "metas",
     title: "Metas de ahorro",
-    description:
-      "Define cuánto quieres ahorrar y para cuándo. SaldoGT calcula cuánto necesitas apartar al día y muestra tu avance.",
+    statement: "Ahorra con una fecha y un monto claros.",
+    description: "SaldoGT calcula cuánto apartar al día para llegar a tu meta.",
     image: "/images/app/metas.webp",
     alt: "Pantalla de metas de ahorro de SaldoGT con el progreso de un fondo de emergencia",
   },
   {
-    id: "asistente",
     title: "Asistente IA",
-    description:
-      "Pregunta cuánto gastaste este mes, en qué categoría gastas más o cómo reducir gastos, y recibe respuestas basadas en tus datos.",
+    statement: "Pregunta y recibe respuestas sobre tu dinero.",
+    description: "Cuánto gastaste, en qué categoría gastas más y cómo reducir gastos.",
     image: "/images/app/asistente.webp",
     alt: "Asistente IA de SaldoGT con preguntas sugeridas sobre tus finanzas",
   },
   {
-    id: "escaner",
     title: "Escáner IA",
-    description:
-      "Sube la foto de una factura o recibo y SaldoGT lee el comprobante para registrar el gasto por ti.",
+    statement: "Una foto de tu factura es suficiente.",
+    description: "SaldoGT lee el comprobante y registra el gasto por ti.",
     image: "/images/app/escaner.webp",
     alt: "Escáner IA de SaldoGT para subir facturas y recibos",
   },
   {
-    id: "analisis",
     title: "Análisis financiero",
-    description:
-      "Compara ingresos y gastos por periodo, revisa tu tasa de ahorro y exporta tus reportes en PDF.",
+    statement: "Tus números, por periodo y en PDF.",
+    description: "Compara ingresos y gastos, revisa tu tasa de ahorro y exporta reportes.",
     image: "/images/app/analisis.webp",
     alt: "Pantalla de análisis financiero de SaldoGT con ingresos, gastos, balance y tasa de ahorro",
   },
 ];
 
 export default function Showcase() {
-  const [active, setActive] = useState(features[0].id);
-  const phoneRef = useRef(null);
-  const tabRefs = useRef([]);
-  const hasSwitched = useRef(false);
-  const current = features.find((feature) => feature.id === active);
+  const trackRef = useRef(null);
+  const [edges, setEdges] = useState({ start: true, end: false });
 
-  // Anima la pantalla nueva cada vez que cambia la función (no en la carga inicial)
-  useGSAP(
-    () => {
-      if (!hasSwitched.current) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      gsap.fromTo(
-        phoneRef.current,
-        { autoAlpha: 0.4, y: 16, scale: 0.98 },
-        { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, ease: "power2.out", overwrite: true }
-      );
-    },
-    { dependencies: [active] }
-  );
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const update = () =>
+      setEdges({
+        start: track.scrollLeft <= 4,
+        end: track.scrollLeft + track.clientWidth >= track.scrollWidth - 4,
+      });
+    update();
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      track.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
-  const select = (id) => {
-    if (id === active) return;
-    hasSwitched.current = true;
-    setActive(id);
-  };
-
-  const onKeyDown = (event, index) => {
-    const keys = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 };
-    if (!(event.key in keys)) return;
-    event.preventDefault();
-    const next = (index + keys[event.key] + features.length) % features.length;
-    tabRefs.current[next]?.focus();
-    select(features[next].id);
+  const scrollByCard = (direction) => {
+    const track = trackRef.current;
+    const card = track?.querySelector("li");
+    if (!card) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    track.scrollBy({ left: direction * (card.offsetWidth + 20), behavior: reduce ? "auto" : "smooth" });
   };
 
   return (
-    <section id="caracteristicas" className="bg-surface py-24 md:py-32">
-      <Reveal className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="max-w-2xl">
-          <p
-            data-reveal
-            className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-700"
-          >
-            Funciones
-          </p>
+    <section id="caracteristicas" className="bg-mist py-24 md:py-32">
+      <Reveal>
+        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-4 px-5 sm:flex-row sm:items-end md:px-8">
           <h2
             data-reveal
-            className="mt-4 text-4xl font-bold tracking-tight text-text md:text-5xl"
+            className="max-w-xl text-[2.5rem] leading-[1.08] tracking-[-0.01em] text-ink md:text-5xl"
           >
-            Todo lo que necesitas para controlar tu dinero.
+            Conoce SaldoGT por dentro.
           </h2>
-          <p data-reveal className="mt-5 max-w-xl text-lg leading-8 text-text-muted">
-            Así se ve SaldoGT por dentro. Funciona desde el navegador de tu teléfono o
-            computadora.
-          </p>
+          <a
+            data-reveal
+            href={appLinks.register}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex shrink-0 items-center gap-0.5 text-[17px] text-brand-700 hover:underline"
+          >
+            Pruébalo gratis
+            <ChevronRight size={18} aria-hidden="true" />
+          </a>
         </div>
 
-        <div className="mt-14 grid items-center gap-12 lg:grid-cols-[1fr_auto] lg:gap-20">
-          <div
-            data-reveal
-            role="tablist"
-            aria-label="Funciones de SaldoGT"
-            aria-orientation="vertical"
-            className="order-2 divide-y divide-line border-y border-line lg:order-1"
-          >
-            {features.map((feature, index) => {
-              const selected = feature.id === active;
-              return (
-                <div key={feature.id}>
-                  <button
-                    ref={(element) => (tabRefs.current[index] = element)}
-                    type="button"
-                    role="tab"
-                    id={`tab-${feature.id}`}
-                    aria-selected={selected}
-                    aria-controls="feature-panel"
-                    tabIndex={selected ? 0 : -1}
-                    onClick={() => select(feature.id)}
-                    onKeyDown={(event) => onKeyDown(event, index)}
-                    className="group flex w-full cursor-pointer items-center gap-5 py-5 text-left"
-                  >
-                    <span
-                      className={`font-display text-sm font-semibold tabular-nums transition-colors ${
-                        selected ? "text-brand-600" : "text-text-muted/60"
-                      }`}
-                    >
-                      0{index + 1}
-                    </span>
-                    <span
-                      className={`font-display text-xl font-semibold transition-colors md:text-2xl ${
-                        selected ? "text-text" : "text-text-muted group-hover:text-text"
-                      }`}
-                    >
-                      {feature.title}
-                    </span>
-                  </button>
-                  {selected && (
-                    <p className="-mt-2 max-w-lg pb-6 pl-10 leading-7 text-text-muted">
-                      {feature.description}
-                    </p>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          <div
-            id="feature-panel"
-            role="tabpanel"
-            aria-labelledby={`tab-${current.id}`}
-            data-reveal
-            className="order-1 lg:order-2"
-          >
-            <div className="relative mx-auto w-64 sm:w-72">
-              <div
-                className="absolute inset-x-[-20%] bottom-[-6%] top-[12%] -z-10 rounded-full bg-brand-100 blur-3xl"
-                aria-hidden="true"
-              />
-              <div ref={phoneRef}>
-                <PhoneFrame src={current.image} alt={current.alt} sizes="288px" />
+        <ul
+          ref={trackRef}
+          data-reveal
+          aria-label="Funciones de SaldoGT"
+          className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 pb-2 md:scroll-px-8 md:px-8 xl:scroll-px-[calc((100vw-72rem)/2+2rem)] xl:px-[calc((100vw-72rem)/2+2rem)]"
+        >
+          {features.map((feature) => (
+            <li
+              key={feature.title}
+              className="flex h-[36rem] w-[19rem] shrink-0 snap-start flex-col overflow-hidden rounded-card bg-canvas sm:h-[40rem] sm:w-[23rem]"
+            >
+              <div className="px-7 pt-8">
+                <h3 className="text-[17px] font-semibold text-ink">{feature.title}</h3>
+                <p className="mt-2 text-2xl font-semibold leading-[1.17] tracking-[-0.01em] text-ink">
+                  {feature.statement}
+                </p>
+                <p className="mt-3 text-[15px] leading-[1.4] text-slate">{feature.description}</p>
               </div>
-            </div>
-          </div>
+
+              <div className="relative mt-auto px-10">
+                <div className="translate-y-6 rounded-t-[2.4rem] bg-ink px-2 pt-2">
+                  <div className="relative aspect-[9/13] overflow-hidden rounded-t-[2rem] bg-[#f4f6f9]">
+                    <Image
+                      src={feature.image}
+                      alt={feature.alt}
+                      fill
+                      sizes="(max-width: 640px) 240px, 300px"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mx-auto mt-6 flex max-w-6xl justify-end gap-3 px-5 md:px-8">
+          <button
+            type="button"
+            onClick={() => scrollByCard(-1)}
+            disabled={edges.start}
+            aria-label="Ver función anterior"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-[rgba(210,210,215,0.64)] text-ink/70 transition-opacity hover:text-ink disabled:cursor-default disabled:opacity-40"
+          >
+            <ChevronLeft size={20} aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollByCard(1)}
+            disabled={edges.end}
+            aria-label="Ver siguiente función"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-[rgba(210,210,215,0.64)] text-ink/70 transition-opacity hover:text-ink disabled:cursor-default disabled:opacity-40"
+          >
+            <ChevronRight size={20} aria-hidden="true" />
+          </button>
         </div>
       </Reveal>
     </section>

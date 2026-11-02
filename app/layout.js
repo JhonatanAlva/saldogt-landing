@@ -1,15 +1,9 @@
-import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
 });
 
 export const metadata = {
@@ -35,14 +29,14 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#061413",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="es"
-      className={`${jakarta.variable} ${bricolage.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

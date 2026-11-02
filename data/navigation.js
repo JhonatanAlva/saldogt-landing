@@ -1,11 +1,11 @@
 export const navigation = [
   {
-    title: "Cómo funciona",
-    href: "#como-funciona",
-  },
-  {
     title: "Funciones",
     href: "#caracteristicas",
+  },
+  {
+    title: "Cómo funciona",
+    href: "#como-funciona",
   },
   {
     title: "Seguridad",

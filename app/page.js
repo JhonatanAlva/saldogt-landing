@@ -15,8 +15,8 @@ export default function Home() {
       </header>
       <main id="main-content">
         <Hero />
-        <HowItWorks />
         <Showcase />
+        <HowItWorks />
         <Security />
         <FAQ />
         <CTA />

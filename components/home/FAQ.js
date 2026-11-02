@@ -36,36 +36,32 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="bg-paper py-24 md:py-32">
-      <Reveal className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <p
-            data-reveal
-            className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-700"
-          >
+    <section id="faq" className="bg-canvas py-24 md:py-32">
+      <Reveal className="mx-auto grid max-w-6xl gap-12 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <p data-reveal className="text-[21px] font-semibold text-ink">
             Preguntas frecuentes
           </p>
           <h2
             data-reveal
-            className="mt-4 text-4xl font-bold tracking-tight text-text md:text-5xl"
+            className="mt-2 text-[2.5rem] leading-[1.08] tracking-[-0.01em] text-ink md:text-5xl"
           >
             Resolvemos tus dudas.
           </h2>
-          <p data-reveal className="mt-5 max-w-sm leading-7 text-text-muted">
-            Todo lo que necesitas saber antes de empezar a usar SaldoGT.
-          </p>
         </div>
 
-        <div className="divide-y divide-line border-y border-line">
+        <div className="divide-y divide-hairline border-y border-hairline">
           {faqs.map((faq) => (
-            <details key={faq.question} data-reveal className="group py-1">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-lg font-semibold text-text [&::-webkit-details-marker]:hidden">
+            <details key={faq.question} data-reveal className="group">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left text-[19px] font-semibold tracking-[-0.01em] text-ink [&::-webkit-details-marker]:hidden">
                 {faq.question}
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-brand-700 transition-transform duration-300 group-open:rotate-45 group-open:border-brand-500/40 group-open:bg-brand-50">
-                  <Plus size={18} aria-hidden="true" />
-                </span>
+                <Plus
+                  size={20}
+                  aria-hidden="true"
+                  className="shrink-0 text-slate transition-transform duration-300 group-open:rotate-45"
+                />
               </summary>
-              <p className="max-w-2xl pb-6 pr-14 leading-7 text-text-muted">{faq.answer}</p>
+              <p className="max-w-2xl pb-6 pr-10 text-slate">{faq.answer}</p>
             </details>
           ))}
         </div>
