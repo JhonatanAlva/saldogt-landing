@@ -1,28 +1,87 @@
 @import "tailwindcss";
 
+/*
+  Paleta SaldoGT (derivada del logo: turquesa + menta)
+  - ink: secciones oscuras
+  - paper/surface: secciones claras
+  - brand: acciones sobre fondo claro (contraste AA con texto blanco)
+  - mint: acentos y acciones sobre fondo oscuro
+*/
 :root {
-  --background: #0f172a;
-  --foreground: #ffffff;
+  --ink-950: #061413;
+  --ink-900: #0a1f1d;
+  --ink-800: #11302d;
+  --ink-700: #1b4440;
+
+  --paper: #f5f8f7;
+  --surface: #ffffff;
+  --line: #dce7e4;
+
+  --text: #0a1f1d;
+  --text-muted: #4a5f5c;
+
+  --brand-50: #e9f7f5;
+  --brand-100: #c9ece7;
+  --brand-500: #2fa39b;
+  --brand-600: #13877f;
+  --brand-700: #0e6b65;
+
+  --mint-300: #8af0d8;
+  --mint-400: #5ee6c8;
+
+  --coral-400: #fb8a6b;
+  --coral-500: #f06a47;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink-950: var(--ink-950);
+  --color-ink-900: var(--ink-900);
+  --color-ink-800: var(--ink-800);
+  --color-ink-700: var(--ink-700);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-mint-300: var(--mint-300);
+  --color-mint-400: var(--mint-400);
+  --color-coral-400: var(--coral-400);
+  --color-coral-500: var(--coral-500);
+
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-bricolage);
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--background);
-  color: var(--foreground);
+  scroll-padding-top: 5rem;
+  background: var(--ink-950);
 }
 
 body {
   min-height: 100%;
   font-family: var(--font-sans);
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--paper);
+  color: var(--text);
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 2px solid var(--mint-400);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 .skip-link {
@@ -41,9 +100,29 @@ body {
   width: auto;
   height: auto;
   padding: 0.75rem 1rem;
-  background: rgba(15, 23, 42, 0.95);
+  background: var(--ink-900);
   color: #fff;
   border-radius: 9999px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-  z-index: 50;
+  z-index: 100;
+}
+
+/*
+  Elementos animados por GSAP: ocultos hasta que el script los revela.
+  Sin JavaScript (o con movimiento reducido) se muestran normalmente.
+*/
+.js [data-hero],
+.js [data-reveal] {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-hero],
+  .js [data-reveal] {
+    visibility: visible;
+  }
 }

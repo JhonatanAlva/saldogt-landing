@@ -1,74 +1,75 @@
-import { MotionSection, MotionDiv, MotionStagger } from "@/components/shared/ui/MotionSection";
+import { Plus } from "lucide-react";
+import Reveal from "@/components/shared/Reveal";
+
+const faqs = [
+  {
+    question: "¿Qué es SaldoGT?",
+    answer:
+      "SaldoGT es una plataforma para gestionar ingresos, gastos, presupuestos y metas de ahorro desde un solo lugar, con montos en quetzales.",
+  },
+  {
+    question: "¿SaldoGT es gratuito?",
+    answer:
+      "Sí. Puedes comenzar a utilizar SaldoGT de forma gratuita y acceder a las principales herramientas de control financiero.",
+  },
+  {
+    question: "¿Mis datos están seguros?",
+    answer:
+      "Sí. Tu información financiera es privada y solo tú tienes acceso a tus datos personales. No vendemos tu información a terceros.",
+  },
+  {
+    question: "¿Puedo registrar ingresos y gastos?",
+    answer:
+      "Sí. SaldoGT permite registrar ingresos, gastos, gastos fijos e ingresos recurrentes para llevar un control completo de tus finanzas.",
+  },
+  {
+    question: "¿Cómo funciona el Asistente IA?",
+    answer:
+      "El Asistente IA analiza tus movimientos financieros y genera recomendaciones personalizadas para ayudarte a tomar mejores decisiones.",
+  },
+  {
+    question: "¿Puedo establecer metas de ahorro?",
+    answer:
+      "Sí. Puedes crear metas de ahorro, monitorear tu progreso y visualizar cuánto te falta para alcanzar cada objetivo.",
+  },
+];
 
 export default function FAQ() {
-  const faqs = [
-    {
-      question: "¿Qué es SaldoGT?",
-      answer:
-        "SaldoGT es una plataforma para gestionar ingresos, gastos, presupuestos y metas de ahorro desde un solo lugar.",
-    },
-    {
-      question: "¿SaldoGT es gratuito?",
-      answer:
-        "Sí. Puedes comenzar a utilizar SaldoGT de forma gratuita y acceder a las principales herramientas de control financiero.",
-    },
-    {
-      question: "¿Mis datos están seguros?",
-      answer:
-        "Sí. Tu información financiera es privada y solo tú tienes acceso a tus datos personales.",
-    },
-    {
-      question: "¿Puedo registrar ingresos y gastos?",
-      answer:
-        "Sí. SaldoGT permite registrar ingresos, gastos, gastos fijos e ingresos recurrentes para llevar un control completo de tus finanzas.",
-    },
-    {
-      question: "¿Cómo funciona el Asistente IA?",
-      answer:
-        "El Asistente IA analiza tus movimientos financieros y genera recomendaciones personalizadas para ayudarte a tomar mejores decisiones.",
-    },
-    {
-      question: "¿Puedo establecer metas de ahorro?",
-      answer:
-        "Sí. Puedes crear metas de ahorro, monitorear tu progreso y visualizar cuánto te falta para alcanzar cada objetivo.",
-    },
-  ];
-
   return (
-    <MotionSection id="faq" className="mx-auto max-w-5xl px-6 py-12">
-      <MotionDiv className="text-center" delay={0.1}>
-        <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-400">
-          FAQ
-        </span>
-
-        <h2 className="mt-6 text-5xl font-extrabold text-white">
-          Preguntas frecuentes
-        </h2>
-
-        <p className="mt-6 text-xl text-slate-400">
-          Todo lo que necesitas saber sobre SaldoGT.
-        </p>
-      </MotionDiv>
-
-      <MotionStagger className="mt-16 space-y-6">
-        {faqs.map((faq, index) => (
-          <MotionDiv
-            key={index}
-            className="group rounded-2xl border border-white/10 bg-slate-900/50 p-6"
-            delay={0.15 + index * 0.05}
+    <section id="faq" className="bg-paper py-24 md:py-32">
+      <Reveal className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <p
+            data-reveal
+            className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-700"
           >
-            <details>
-              <summary className="cursor-pointer text-xl font-semibold text-white [&::-webkit-details-marker]:hidden">
-                {faq.question}
-              </summary>
+            Preguntas frecuentes
+          </p>
+          <h2
+            data-reveal
+            className="mt-4 text-4xl font-bold tracking-tight text-text md:text-5xl"
+          >
+            Resolvemos tus dudas.
+          </h2>
+          <p data-reveal className="mt-5 max-w-sm leading-7 text-text-muted">
+            Todo lo que necesitas saber antes de empezar a usar SaldoGT.
+          </p>
+        </div>
 
-              <p className="mt-3 text-slate-400">
-                {faq.answer}
-              </p>
+        <div className="divide-y divide-line border-y border-line">
+          {faqs.map((faq) => (
+            <details key={faq.question} data-reveal className="group py-1">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-lg font-semibold text-text [&::-webkit-details-marker]:hidden">
+                {faq.question}
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-brand-700 transition-transform duration-300 group-open:rotate-45 group-open:border-brand-500/40 group-open:bg-brand-50">
+                  <Plus size={18} aria-hidden="true" />
+                </span>
+              </summary>
+              <p className="max-w-2xl pb-6 pr-14 leading-7 text-text-muted">{faq.answer}</p>
             </details>
-          </MotionDiv>
-        ))}
-      </MotionStagger>
-    </MotionSection>
+          ))}
+        </div>
+      </Reveal>
+    </section>
   );
 }

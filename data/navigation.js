@@ -1,14 +1,23 @@
 export const navigation = [
   {
-    title: "Inicio",
-    href: "#inicio",
+    title: "Cómo funciona",
+    href: "#como-funciona",
   },
   {
-    title: "Características",
+    title: "Funciones",
     href: "#caracteristicas",
+  },
+  {
+    title: "Seguridad",
+    href: "#seguridad",
   },
   {
     title: "FAQ",
     href: "#faq",
   },
 ];
+
+export const appLinks = {
+  login: "https://app.misaldo.lat/",
+  register: "https://app.misaldo.lat/registro",
+};

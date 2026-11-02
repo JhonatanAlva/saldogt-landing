@@ -1,40 +1,52 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { navigation } from "@/data/navigation";
-
-const navVariants = {
-  hidden: { opacity: 0, y: -24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
+import { Menu, X } from "lucide-react";
+import Logo from "@/components/shared/Logo";
+import { appLinks, navigation } from "@/data/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event) => event.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const solid = scrolled || open;
 
   return (
-    <motion.nav
+    <nav
       aria-label="Navegación principal"
-      className="w-full border-b border-white/10 relative"
-      initial="hidden"
-      animate="visible"
-      variants={navVariants}
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        solid
+          ? "border-b border-white/10 bg-ink-950/85 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:gap-6">
-        {/* Logo */}
-        <Link href="/" className="flex items-center text-white">
-          <img src="/logo.png" alt="SaldoGT" className="h-14 w-auto" />
-          <span className="sr-only">SaldoGT</span>
+      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 md:px-8">
+        <Link href="/" aria-label="SaldoGT, ir al inicio" className="rounded-lg">
+          <Logo tone="dark" />
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          <ul className="flex items-center gap-8">
+        <div className="hidden items-center gap-2 lg:flex">
+          <ul className="flex items-center gap-1">
             {navigation.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="text-sm font-medium text-gray-300 transition hover:text-emerald-400"
+                  className="rounded-lg px-3.5 py-2 text-sm font-medium text-white/70 transition-colors hover:text-white"
                 >
                   {item.title}
                 </a>
@@ -42,51 +54,48 @@ export default function Navbar() {
             ))}
           </ul>
 
+          <span className="mx-3 h-5 w-px bg-white/15" aria-hidden="true" />
+
           <a
-            href="https://app.misaldo.lat/"
+            href={appLinks.login}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-xl px-4 py-2 text-sm font-medium text-gray-300 transition hover:text-white"
+            className="rounded-lg px-3.5 py-2 text-sm font-medium text-white/80 transition-colors hover:text-white"
           >
             Iniciar sesión
           </a>
 
           <a
-            href="https://app.misaldo.lat/registro"
+            href={appLinks.register}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-xl bg-emerald-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-emerald-300"
+            className="rounded-full bg-mint-400 px-5 py-2.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-mint-300"
           >
-            Comenzar gratis
+            Crear cuenta gratis
           </a>
         </div>
 
         <button
           type="button"
-          className="z-30 inline-flex items-center gap-2 rounded-full border border-white/15 bg-slate-950/85 px-3 py-2 text-white shadow-lg shadow-black/30 transition hover:border-emerald-400 hover:bg-slate-900 md:hidden"
+          className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-mint-400 lg:hidden"
           aria-controls="mobile-menu"
           aria-expanded={open}
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
           onClick={() => setOpen((current) => !current)}
         >
-          <span className="sr-only">{open ? "Cerrar menú" : "Abrir menú"}</span>
-          <span className="flex h-5 w-5 flex-col justify-between">
-            <span className="block h-0.5 w-full rounded-full bg-current" />
-            <span className="block h-0.5 w-full rounded-full bg-current" />
-            <span className="block h-0.5 w-full rounded-full bg-current" />
-          </span>
-          <span className="text-sm font-medium">Menú</span>
+          {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden">
-          <div className="mx-4 mb-4 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/95 p-5 shadow-2xl backdrop-blur-xl transition duration-300">
-            <ul className="flex flex-col gap-3">
+        <div id="mobile-menu" className="border-t border-white/10 lg:hidden">
+          <div className="mx-auto max-w-7xl px-5 pb-6 pt-3">
+            <ul className="flex flex-col">
               {navigation.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="block rounded-2xl px-4 py-3 text-base font-medium text-gray-300 transition hover:bg-slate-900 hover:text-emerald-400"
+                    className="block rounded-xl px-3 py-3.5 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
                     onClick={() => setOpen(false)}
                   >
                     {item.title}
@@ -95,30 +104,29 @@ export default function Navbar() {
               ))}
             </ul>
 
-            <div className="mt-4 flex flex-col gap-3">
+            <div className="mt-4 grid grid-cols-2 gap-3">
               <a
-                href="https://app.misaldo.lat/"
+                href={appLinks.login}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-2xl border border-white/10 px-4 py-3 text-center text-sm font-medium text-gray-300 transition hover:bg-slate-900 hover:text-white"
+                className="rounded-full border border-white/15 px-4 py-3 text-center text-sm font-semibold text-white transition-colors hover:border-mint-400"
                 onClick={() => setOpen(false)}
               >
                 Iniciar sesión
               </a>
-
               <a
-                href="https://app.misaldo.lat/registro"
+                href={appLinks.register}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-2xl bg-emerald-400 px-4 py-3 text-center text-sm font-semibold text-slate-900 transition hover:bg-emerald-300"
+                className="rounded-full bg-mint-400 px-4 py-3 text-center text-sm font-semibold text-ink-950 transition-colors hover:bg-mint-300"
                 onClick={() => setOpen(false)}
               >
-                Comenzar gratis
+                Crear cuenta
               </a>
             </div>
           </div>
         </div>
       )}
-    </motion.nav>
+    </nav>
   );
 }
