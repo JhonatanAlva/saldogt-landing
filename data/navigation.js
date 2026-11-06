@@ -20,4 +20,6 @@ export const navigation = [
 export const appLinks = {
   login: "https://app.misaldo.lat/",
   register: "https://app.misaldo.lat/registro",
+  terms: "https://app.misaldo.lat/terminos",
+  privacy: "https://app.misaldo.lat/privacidad",
 };
